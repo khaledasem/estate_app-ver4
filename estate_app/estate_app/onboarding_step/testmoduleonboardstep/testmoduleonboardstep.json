@@ -1,0 +1,20 @@
+{
+ "action": "Go to Page",
+ "action_label": "actionLabel",
+ "creation": "2021-10-02 22:24:19.822136",
+ "docstatus": 0,
+ "doctype": "Onboarding Step",
+ "idx": 0,
+ "is_complete": 0,
+ "is_single": 0,
+ "is_skipped": 0,
+ "modified": "2021-10-02 22:24:19.822136",
+ "modified_by": "Administrator",
+ "name": "testModuleOnboardStep",
+ "owner": "Administrator",
+ "path": "/",
+ "show_form_tour": 0,
+ "show_full_form": 0,
+ "title": "testModuleOnboardStep",
+ "validate_action": 1
+}

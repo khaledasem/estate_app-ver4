@@ -1,0 +1,23 @@
+{
+ "content": null,
+ "creation": "2021-09-24 23:20:59.059415",
+ "docstatus": 0,
+ "doctype": "Page",
+ "idx": 0,
+ "modified": "2021-09-24 23:20:59.059415",
+ "modified_by": "Administrator",
+ "module": "Estate App",
+ "name": "planningpage",
+ "owner": "Administrator",
+ "page_name": "planningPage",
+ "roles": [
+  {
+   "role": "planningRole"
+  }
+ ],
+ "script": null,
+ "standard": "Yes",
+ "style": null,
+ "system_page": 1,
+ "title": "planning page"
+}

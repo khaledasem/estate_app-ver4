@@ -1,0 +1,35 @@
+{
+ "cards_label": "service",
+ "category": "Modules",
+ "charts": [],
+ "creation": "2021-10-02 17:30:21.608630",
+ "developer_mode_only": 0,
+ "disable_user_customization": 1,
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "extends_another_page": 0,
+ "hide_custom": 1,
+ "idx": 0,
+ "is_default": 0,
+ "is_standard": 1,
+ "label": "Service",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "test9_service",
+   "link_to": "test9",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2021-10-03 01:23:23.734440",
+ "modified_by": "Administrator",
+ "module": "Estate App",
+ "name": "Service",
+ "owner": "Administrator",
+ "pin_to_bottom": 1,
+ "pin_to_top": 0,
+ "shortcuts": []
+}

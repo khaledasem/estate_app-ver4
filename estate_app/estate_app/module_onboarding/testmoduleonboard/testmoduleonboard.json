@@ -1,0 +1,26 @@
+{
+ "allow_roles": [
+  {
+   "role": "PlanningRole"
+  }
+ ],
+ "creation": "2021-10-02 22:24:24.172245",
+ "docstatus": 0,
+ "doctype": "Module Onboarding",
+ "documentation_url": "testModuleOnboard",
+ "idx": 0,
+ "is_complete": 0,
+ "modified": "2021-10-02 22:24:24.172245",
+ "modified_by": "Administrator",
+ "module": "Estate App",
+ "name": "testModuleOnboard",
+ "owner": "Administrator",
+ "steps": [
+  {
+   "step": "testModuleOnboardStep"
+  }
+ ],
+ "subtitle": "testModuleOnboard",
+ "success_message": "testModuleOnboard",
+ "title": "testModuleOnboard"
+}
