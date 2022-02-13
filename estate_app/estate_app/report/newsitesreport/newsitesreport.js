@@ -1,7 +1,6 @@
 // Copyright (c) 2016, khaled and contributors
 // For license information, please see license.txt
 /* eslint-disable */
-
 frappe.query_reports["NewSitesReport"] = {
 	"filters": [
 	{
@@ -49,7 +48,7 @@ frappe.query_reports["NewSitesReport"] = {
 			"fieldname": "contract_status",
 			"label": __("حالة العقد"),
 			"fieldtype": "Select",
-			"options": [ '', 'Successful', 'In Progress', 'Failed' ],
+			"options": [ '', 'تم توقيع العقد', 'جاري التفاوض', 'Failed' ],
 			"width": 80,
 			"reqd": 0,
 			
@@ -58,7 +57,7 @@ frappe.query_reports["NewSitesReport"] = {
 			"fieldname": "survey_type",
 			"label": __("نوع المسح"),
 			"fieldtype": "Select",
-			"options": [ '', 'New', 'بديل موقع في الخدمات', 'بديل موقع في المشاريع' ],
+			"options": [ '', 'موقع جديد', 'بديل موقع في الخدمات', 'بديل موقع في المشاريع' ],
 			"width": 80,
 			"reqd": 0,
 			
@@ -92,7 +91,7 @@ frappe.query_reports["NewSitesReport"] = {
 		 },
 		  {
 		 	"fieldname": "is_replaced",
-			"label": __("Is Replaced"),
+			"label": __("هل تم مسح بديل"),
 			"fieldtype": "Select",
 			"options": ['','Yes', 'No'],
 		 	"width": 80,
@@ -110,11 +109,11 @@ frappe.query_reports["NewSitesReport"] = {
 	 		console.log('++++++++++++++++++++++++')
             console.log(data.حالة_العقد)
 			let contract_status_h = data.حالة_العقد
-            if(contract_status_h=="Successful"){
+            if(contract_status_h=="تم توقيع العقد"){
                  value = "<span style='color: green;font-weight:bold'>" + value + "</span>";
-            }else if(contract_status_h == "In Progress"){
-                 value = "<span style='color:#AAAA00 ;font-weight:bold'>" + value + "</span>";
-            } else if(contract_status_h=="Failed"){
+            }else if(contract_status_h == "جاري التفاوض"){
+                 value = "<span style='color:blue ;font-weight:bold'>" + value + "</span>";
+            } else if(contract_status_h=="فشل التفاوض"){
                  value = "<span style='color: red;font-weight:bold'>" + value + "</span>";
              } 
                         // msgprint(data.site_importance)
@@ -148,16 +147,19 @@ frappe.query_reports["NewSitesReport"] = {
                  }
 			  }
 
-			   if (column.id == "is_replaced_" ) {
-             	 if(data.is_replaced_=="Yes"){
-                                    	value = '<b style="color: yelow;">'+value+'</b>';
+		if (column.id == "هل_تم_مسح_بديل" ) {
+
+			 // msgprint(column.id)
+           	if(data.هل_تم_مسح_بديل=="Yes"){
+           		 // msgprint(column.id)
+                                    	value = '<b style="color: red;">'+value+'</b>';
                                     }
-             	 else if(data.is_replaced_=="No"){
+             	 else if(data.is_replaced_==""){
              	 
                                     	value = '<b style="color:blue;">'+value+'</b>';
                                     
                  }
-			  }
+		}
 	 	return value
 	 }
 

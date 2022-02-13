@@ -11,8 +11,27 @@ def execute(filters=None):
 	return get_columns(), get_data(filters)
 
 
+
 def get_data(filters):
 	print(f"\n\n\n\n\n\n{filters}\n\n\n\n\n\n")
+
+	[role] = frappe.db.sql(f"""select role_profile_name from tabUser where name ="{frappe.session.user}";""")
+	# get_roles(frappe.session.user)
+	# print(f"\n\n\n\n\n\n{role}\n\n\n\n\n\n")
+	# print(frappe.session.user)
+	# print(role)
+
+	# if role[0] == 'Planning User':
+	# 	frappe.msgprint(_(f"user is: {frappe.session.user}, role is {role}, YESS"))
+	# else:
+	# 	frappe.msgprint(_(f"user is: {frappe.session.user}, role is {role}, NOOO"))
+
+	
+	# frappe.msgprint(_(f"user is: {frappe.session.user}, role is {role[0]}"))
+
+
+	[user_info] = frappe.db.sql(f"""select full_name, phone from tabUser where name ="{frappe.session.user}";""")
+	# frappe.msgprint(_(f"user is: {user_info[1]}, role is {role[0]}"))
 
 	_from, to = filters.get('from'), filters.get('to')
 
@@ -24,9 +43,16 @@ def get_data(filters):
 	if(filters.get('survey_type')):conditions += f" AND survey_type = '{filters.get('survey_type')}' "
 	if(filters.get('engineer_name')):conditions += f" AND engineer_name = '{filters.get('engineer_name')}' "
 	if(filters.get('contract_by')):conditions += f" AND contract_by = '{filters.get('contract_by')}' "
-	if(filters.get('evaluate')):conditions += f" AND evaluate = '{filters.get('evaluate')}' "
+	
 	if(filters.get('is_replaced')):conditions += f" AND is_replaced = '{filters.get('is_replaced')}' "
-	print(f"\n\n\n\n\n\n{conditions}\n\n\n\n\n\n")
+
+
+	if frappe.session.user == 'Administrator' or role[0] == 'Planning User' or role[0] =='Planning Manager User':
+		if(filters.get('evaluate')):conditions += f" AND evaluate = '{filters.get('evaluate')}' "
+	else:
+		conditions += f" AND evaluate = 'OK' "
+
+	# print(f"\n\n\n\n\n\n{conditions}\n\n\n\n\n\n")
 	data = frappe.db.sql(f"""SELECT  site_name, site_name_arabic,contract_status,survey_type, evaluate, is_replaced, survey_code,zone, government2,modairiah,area_name, site_importance, number_of_choices,choice_contracted,contract_failed_reason,
 	area_type, sun_plate, 
 	engineer_name,engineer_phone,engineer_notes, survey_date,
@@ -51,10 +77,10 @@ def get_columns():
 			"Site Name:Data:100",
 			"اسم الموقع:Data:100",
 			
-			"حالة العقد:Select/['', 'Successful', 'In Progress', 'Failed' ]:100",
+			"حالة العقد:Select/['', 'تم توقيع العقد', 'جاري التفاوض', 'فشل التفاوض' ]:130",
 			"نوع المسح:Data:130",
 			"Evaluation :Select/[ '', 'Yes', 'Resurvey']:100",
-			"Is Replaced :Select/[ '', 'Yes', 'No']",
+			"هل تم مسح بديل:Select/[ '', 'Yes', 'No']",
 			"Survey Code:Data:110",
 			"zone:Data:60",
 			"المحافظة:Link/govern1:100",
@@ -64,7 +90,7 @@ def get_columns():
 			"عدد الخيارات:Data:100",
 			"رقم الخيار المتعاقد علية :Data:140",
 			"سبب فشل التفاوض:Data:140",
-			"Area Type:Data:100",
+			"Cell Type:Data:100",
 			"منظومة شمسية:Data:130",
 			"اسم المهندس:Data:100",
 			"رقم المهندس:Data:100",
@@ -81,7 +107,7 @@ def get_columns():
 			
 			"longitude1:Data:100",
 			"latitude1:Data:100",
-			"اهمية الخيار1:Data:130",
+			"افضلية الخيار1:Data:130",
 
 			"نوع البرج1:Data:100",
 			"Tower/Pole Height(m)1:Data:150",
@@ -90,7 +116,7 @@ def get_columns():
 
 			"longitude2:Data:100",
 			"latitude2:Data:100",
-			"اهمية الخيار2:Data:130",
+			"افضلية الخيار2:Data:130",
 
 			"نوع البرج2:Data:100",
 			"Tower/Pole Height(m)2:Data:150",
@@ -98,7 +124,7 @@ def get_columns():
 
 			"longitude3:Data:100",
 			"latitude3:Data:100",
-			"اهمية الخيار3:Data:130",
+			"افضلية الخيار3:Data:130",
 			
 			"نوع البرج3:Data:100",
 			"Tower/Pole Height(m)3:Data:150",
@@ -106,7 +132,7 @@ def get_columns():
 
 			"longitude4:Data:100",
 			"latitude4:Data:100",
-			"اهمية الخيار4:Data:130",
+			"افضلية الخيار4:Data:130",
 			
 			"نوع البرج4:Data:100",
 			"Tower/Pole Height(m)4:Data:150",

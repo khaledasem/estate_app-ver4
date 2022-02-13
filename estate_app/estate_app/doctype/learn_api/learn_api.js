@@ -7,6 +7,8 @@ frappe.ui.form.on('learn_api', {
 		
 		// ##############################  server call api ######################################
 		frm.server_call_api_learn = function(frm){
+
+			//--------------setvalue---------------------------------------
 			frappe.db.set_value('learn_api', '1', 'test_add_value_js', 'SET')
 	    	.then(r => {
 	        	let doc = r.message;
@@ -16,11 +18,12 @@ frappe.ui.form.on('learn_api', {
 
 
 
-	    	// ----------------------------- get doc by name
+	    	// ----------------------------- get doc by name------------------
 			frappe.db.get_doc('govern1', 'عدن')
 	   		 .then(doc => {
 	        	console.log(doc.name)
 	    	})
+	   		 //---------------------------------------------------------------
 
 
 
@@ -225,10 +228,10 @@ frappe.ui.form.on('learn_api', {
 	//---------------------------------------------------------------------------
 	server_call_apis: function(frm){
 
-		// frm.server_call_api_learn(frm)
+		 frm.server_call_api_learn(frm)
 
 
-		frm.dialog_api_learn(frm)
+		//frm.dialog_api_learn(frm)
 
 	},
 

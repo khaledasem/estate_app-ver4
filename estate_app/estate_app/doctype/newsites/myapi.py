@@ -29,4 +29,10 @@ def check_api():
 
 	return frappe.db.sql(f"""SELECT * FROM tabgovern1 ;""", as_dict = True)
 
+@frappe.whitelist()
+def getUserInfo_api():
+	# [user_info] = frappe.db.sql(f"""select full_name, phone from tabUser where name ="{frappe.session.user}";""")
+	# frappe.msgprint(_(f"user is: {[user_info]}, role is {role[0]}"))
+	return frappe.db.sql(f"""select full_name, phone, role_profile_name from tabUser where name ="{frappe.session.user}";""")
+
 
