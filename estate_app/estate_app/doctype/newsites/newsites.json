@@ -145,7 +145,7 @@
   {
    "columns": 1,
    "fieldname": "survey_code",
-   "fieldtype": "Read Only",
+   "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Survey Code",
    "unique": 1
@@ -735,6 +735,7 @@
    "fieldname": "tower_type_concat1",
    "fieldtype": "Data",
    "hidden": 1,
+   "label": "tower_type_concat1",
    "read_only": 1
   },
   {
@@ -848,7 +849,7 @@
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-02-07 09:14:04.952263",
+ "modified": "2022-02-14 21:46:40.326550",
  "modified_by": "Administrator",
  "module": "Estate App",
  "name": "NewSites",

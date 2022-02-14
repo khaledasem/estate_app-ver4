@@ -14,7 +14,7 @@ frappe.listview_settings['NewSites'] = {
     //     // frm.doc.is_replaced='';
     // },
 
-    hide_name_column: true, // hide the last column which shows the `name`
+    // hide_name_column: true, // hide the last column which shows the `name`
     get_indicator(doc) {
         // customize indicator color --------------
         if (doc.evaluate == 'Resurvey') {

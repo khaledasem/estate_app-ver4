@@ -1286,7 +1286,12 @@ frappe.ui.form.on('NewSites', {
 
 	// ####################################################  Refresh ################################################
 	 refresh: function(frm) {
-	 
+	 	// frm.doc.name2 = frm.doc.name;
+	 	// frm.refresh_field('name2')
+	 	// frm.doc.name4 = frm.doc.name;
+	 	// frm.refresh_field('name4')
+	 	// frm.doc.survey_code = frm.doc.name;
+	 	// frm.refresh_field('survey_code')
 	 	// frappe.msgprint(__('refresh'));
 		//-------------- disable some field if user role is diff-------------------------
 
@@ -1983,59 +1988,65 @@ frappe.ui.form.on('NewSites', {
 
 
 	  	frm.doc.see_in_map = 'No'
-
-	  	if (frm.doc.government2) {
-	  		frappe.call({
-	  		method: "estate_app.estate_app.doctype.newsites.myapi.get_government_info",
-	  		args: {'city': frm.doc.government2},
-	  		callback: function(r) {
-	  			console.log(r)
-	  			if(r.message.length>0){
-	  				if(frm.doc.survey_type == 'موقع جديد')
-	  				{
-	  					let city_code = r.message[0].code;
-	  					let last_code = r.message[0].last_code;
-	  					let used_code_num = Number(last_code) + 1;
-	  					let used_code= city_code + used_code_num + '-1';
-	  					frm.doc.survey_code = used_code;
-
-	  					frm.call({
-	  						method: "estate_app.estate_app.doctype.newsites.myapi.set_last_code",
-	  						args: {'name': frm.doc.government2, 'last_code': used_code_num},
-	  						callback: function(r) {
-	  						}
-	  					})
-	  					console.log(last_code)
-
-	  				}
-	  				else if(frm.doc.survey_type == 'بديل موقع في الخدمات'){
-	  					let str = frm.doc.old_sitename;
-	  					let curr_code = str.substring(0, 8);
-	  					let old_num = str.substring(str.length - 1);
-	  					let curr_num = Number(old_num) + 1;
-	  					let used_code= curr_code + curr_num ;
-	  					frm.doc.survey_code = used_code;
-
-
-
-	  					frappe.call({
-	  						method: "estate_app.estate_app.doctype.newsites.myapi.set_is_replaced_of_old_site",
-	  						args: {'old_sitename': frm.doc.old_sitename},
-	  						callback: function(r) {
-	  						}
-	  					})
-
-	  				}
-
-
-
-
-	  			}
-
-	  		}
-	  	})
-	  	//----------------end call----------------------------
+	  	if(frm.doc.survey_code){
+	  		frm.doc.survey_code= frm.doc.name;
+	  		frm.refresh_field('survey_code')
 	  	}
+	  	if(!frm.doc.survey_code){
+		  	if (frm.doc.government2) {
+		  		frappe.call({
+		  		method: "estate_app.estate_app.doctype.newsites.myapi.get_government_info",
+		  		args: {'city': frm.doc.government2},
+		  		callback: function(r) {
+		  			console.log(r)
+		  			if(r.message.length>0){
+		  				if(frm.doc.survey_type == 'موقع جديد')
+		  				{
+		  					let city_code = r.message[0].code;
+		  					let last_code = r.message[0].last_code;
+		  					let used_code_num = Number(last_code) + 1;
+		  					let used_code= city_code + used_code_num + '-1';
+		  					frm.doc.survey_code = used_code;
+
+		  					frm.call({
+		  						method: "estate_app.estate_app.doctype.newsites.myapi.set_last_code",
+		  						args: {'name': frm.doc.government2, 'last_code': used_code_num},
+		  						callback: function(r) {
+		  						}
+		  					})
+		  					console.log(last_code)
+
+		  				}
+		  				else if(frm.doc.survey_type == 'بديل موقع في الخدمات'){
+		  					let str = frm.doc.old_sitename;
+		  					let curr_code = str.substring(0, 8);
+		  					let old_num = str.substring(str.length - 1);
+		  					let curr_num = Number(old_num) + 1;
+		  					let used_code= curr_code + curr_num ;
+		  					frm.doc.survey_code = used_code;
+
+
+
+		  					frappe.call({
+		  						method: "estate_app.estate_app.doctype.newsites.myapi.set_is_replaced_of_old_site",
+		  						args: {'old_sitename': frm.doc.old_sitename},
+		  						callback: function(r) {
+		  						}
+		  					})
+
+		  				}
+
+
+
+
+		  			}
+
+		  		}
+		  	})
+		  	//----------------end call----------------------------
+		  	}
+	  	}
+	  	
 	  	
 
 

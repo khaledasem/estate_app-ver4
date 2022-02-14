@@ -53,7 +53,7 @@ def get_data(filters):
 		conditions += f" AND evaluate = 'OK' "
 
 	# print(f"\n\n\n\n\n\n{conditions}\n\n\n\n\n\n")
-	data = frappe.db.sql(f"""SELECT  site_name, site_name_arabic,contract_status,survey_type, evaluate, is_replaced, survey_code,zone, government2,modairiah,area_name, site_importance, number_of_choices,choice_contracted,contract_failed_reason,
+	data = frappe.db.sql(f"""SELECT name, site_name, site_name_arabic,contract_status,survey_type, evaluate, is_replaced, survey_code,zone, government2,modairiah,area_name, site_importance, number_of_choices,choice_contracted,contract_failed_reason,
 	area_type, sun_plate, 
 	engineer_name,engineer_phone,engineer_notes, survey_date,
 	contract_by,contracted_by_phone,contract_note,contract_date,
@@ -73,7 +73,7 @@ def get_data(filters):
 
 def get_columns():
 	return [
-			
+			"Name:Data:100",
 			"Site Name:Data:100",
 			"اسم الموقع:Data:100",
 			

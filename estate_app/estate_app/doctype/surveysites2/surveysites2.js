@@ -1301,7 +1301,7 @@ frappe.ui.form.on('SurveySites2', {
 		  				frm.doc.area_name =  doc.area_name;
 		  				frm.doc.area_type =  doc.area_type;
 		  				frm.doc.sun_plate =  doc.sun_plate;
-		  				frm.doc.survey_code =  doc.survey_code;
+		  				frm.doc.survey_code =  doc.name;
 		  				frm.doc.zone =  doc.zone;
 
 		  				// frm.doc.engineer_name =  doc.engineer_name;

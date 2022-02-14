@@ -6,7 +6,7 @@ frappe.listview_settings['SurveySites2'] = {
      //    ['is_replaced', '!=', 'Yes'],
      //    ['evaluate', '-=', 'OK']
     // ],
-    hide_name_column: true, // hide the last column which shows the `name`
+    // hide_name_column: true, // hide the last column which shows the `name`
     get_indicator(doc) {
         // customize indicator color --------------
        if (doc.is_replaced == 'Yes') {
